@@ -1,0 +1,18 @@
+name: mmoral
+modalities: [radiograph, text]
+url: https://github.com/isbrycee/OralGPT
+license: TBD
+num_images: 20563
+benchmark:
+  name: MMOral-Uni
+  num_images: 100
+  num_questions: 1069
+purpose: benchmark
+radiograph:
+  size: 448
+  hist_clip: [0.5, 99.5]
+  mean: [0.45]
+  std: [0.225]
+batch_size_per_gpu: 8
+num_workers: 2
+pin_memory: true

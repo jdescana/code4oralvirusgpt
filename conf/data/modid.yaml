@@ -1,0 +1,15 @@
+name: modid
+modalities: [multispectral]
+url: https://datadryad.org/
+license: TBD
+num_images: 243
+num_subjects: 91
+spectral_bands: 16
+spectral_range_nm: [460, 600]
+purpose: cross_eval
+multispectral:
+  size: 224
+  per_band_normalise: true
+batch_size_per_gpu: 8
+num_workers: 2
+pin_memory: true

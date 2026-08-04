@@ -1,0 +1,21 @@
+name: cairo
+modalities: [photo]
+license: TBD
+num_classes: 3
+class_names: [normal, low_risk, high_risk]
+class_counts:
+  normal: 4405
+  low_risk: 2314
+  high_risk: 2482
+splits:
+  train: 0.7
+  val: 0.1
+  test: 0.2
+stratify_by: patient_id
+photo:
+  size: 448
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+batch_size_per_gpu: 16
+num_workers: 4
+pin_memory: true

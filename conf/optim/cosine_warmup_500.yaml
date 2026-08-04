@@ -1,0 +1,5 @@
+name: cosine_with_linear_warmup
+warmup_steps: 500
+warmup_kind: linear
+min_lr_ratio: 0.0
+num_cycles: 0.5

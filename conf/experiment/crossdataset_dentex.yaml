@@ -1,0 +1,28 @@
+experiment_id: crossdataset_dentex
+description: CODe-trained checkpoint, evaluated zero-shot on DENTEX (Supp. Table S2).
+seed: 42
+phases: [phase3]
+data:
+  primary: code
+  cross_eval: [dentex]
+model:
+  fusion: hgcf
+uq:
+  mc_dropout:
+    num_samples: 20
+    dropout_p: 0.1
+  temperature:
+    enabled: true
+  raps:
+    enabled: true
+    alpha: 0.05
+    penalty: 0.01
+  risk_tier:
+    auto_calibrate: true
+eval:
+  metrics: [accuracy, macro_f1, ece, coverage, set_size]
+  bootstrap_iters: 1000
+  cross_dataset_increase_referral_threshold: true
+compute:
+  world_size: 1
+  precision: bf16

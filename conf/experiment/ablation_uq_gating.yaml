@@ -1,0 +1,66 @@
+experiment_id: ablation_uq_gating
+description: Drop uncertainty-aware gating (Table 2 row A4).
+seed: 42
+seeds: [42, 123, 256, 389, 512, 678, 741, 853, 927, 1024]
+phases: [phase1, phase2, phase3]
+phase1:
+  epochs: 5
+  lr: 1.0e-4
+  batch_size_per_gpu: 32
+  grad_accum_steps: 1
+  warmup_steps: 0
+  scheduler: cosine
+  trainables: [radiograph_adapter]
+  loss: contrastive_image_text
+phase2:
+  epochs: 10
+  lr: 5.0e-5
+  batch_size_per_gpu: 16
+  grad_accum_steps: 1
+  warmup_steps: 500
+  scheduler: cosine_with_linear_warmup
+  trainables: [hgcf, lora, radiograph_adapter]
+  loss:
+    name: joint
+    label_smoothing: 0.1
+    lambda_cal: 0.1
+    lambda_reg: 1.0e-4
+phase3:
+  calibration_split: 0.15
+  fit_temperature: true
+  fit_raps: true
+  fit_risk_tier: true
+data:
+  primary: code
+  cross_eval: []
+model:
+  fusion: hgcf
+  use_token: true
+  use_semantic: true
+  use_gating: true
+  use_uncertainty_gating: true
+  use_radiograph_adapter: true
+  match_param_budget: false
+  use_uncertainty_gating: false
+uq:
+  mc_dropout:
+    num_samples: 20
+    dropout_p: 0.1
+  temperature:
+    enabled: true
+  raps:
+    enabled: true
+    alpha: 0.05
+    penalty: 0.01
+  risk_tier:
+    auto_calibrate: true
+    medium_set_size: 2
+    target_low_risk_accuracy: 0.95
+eval:
+  metrics: [accuracy, macro_f1, sensitivity, specificity, auc, ece, brier, coverage, set_size]
+  bootstrap_iters: 1000
+  significance: holm_bonferroni
+compute:
+  world_size: 4
+  precision: bf16
+  deepspeed: zero2

@@ -1,0 +1,4 @@
+enabled: true
+num_samples: 20
+dropout_p: 0.1
+keep_logits: true

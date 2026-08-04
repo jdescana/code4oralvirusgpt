@@ -1,0 +1,6 @@
+enabled: true
+init: 1.0
+optimizer: lbfgs
+max_iter: 50
+tolerance: 1.0e-4
+calibration_split: 0.15

@@ -1,0 +1,12 @@
+style: hgcf
+hidden_dim: 4096
+num_heads: 16
+num_concept_slots: 16
+use_token: true
+use_semantic: true
+use_gating: true
+use_uncertainty_gating: true
+gating_init: zero
+residual_alpha_init: 0.0
+num_classes: 120
+match_param_budget: false

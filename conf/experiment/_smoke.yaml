@@ -1,0 +1,57 @@
+experiment_id: smoke
+description: For unit-test smoke only; do not use for reporting.
+seed: 0
+seeds: [0]
+phases: [phase2]
+phase2:
+  epochs: 1
+  steps: 2
+  lr: 5.0e-5
+  batch_size_per_gpu: 2
+  grad_accum_steps: 1
+  warmup_steps: 0
+  scheduler: constant
+  trainables: [hgcf]
+  loss:
+    name: joint
+    label_smoothing: 0.1
+    lambda_cal: 0.1
+    lambda_reg: 1.0e-4
+data:
+  primary: synthetic
+  num_train: 16
+  num_val: 8
+  num_classes: 5
+  hidden_dim: 32
+  num_concept_slots: 4
+model:
+  fusion: hgcf
+  hidden_dim: 32
+  num_heads: 4
+  num_concept_slots: 4
+  use_token: true
+  use_semantic: true
+  use_gating: true
+  use_uncertainty_gating: true
+  use_radiograph_adapter: true
+uq:
+  mc_dropout:
+    num_samples: 2
+    dropout_p: 0.1
+  temperature:
+    enabled: true
+  raps:
+    enabled: true
+    alpha: 0.1
+    penalty: 0.0
+  risk_tier:
+    auto_calibrate: true
+    medium_set_size: 2
+    target_low_risk_accuracy: 0.6
+eval:
+  metrics: [accuracy, macro_f1, ece]
+  bootstrap_iters: 50
+compute:
+  world_size: 1
+  precision: fp32
+  deepspeed: none

@@ -1,0 +1,18 @@
+name: dentex
+modalities: [radiograph]
+url: https://dentex.grand-challenge.org/
+license: CC-BY-NC-SA-4.0
+num_classes: 4
+class_names: [caries, deep_caries, periapical_lesion, impacted_tooth]
+splits:
+  train: 705
+  val: 50
+  test: 250
+radiograph:
+  size: 448
+  hist_clip: [0.5, 99.5]
+  mean: [0.45]
+  std: [0.225]
+batch_size_per_gpu: 16
+num_workers: 4
+pin_memory: true

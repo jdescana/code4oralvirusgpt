@@ -1,0 +1,21 @@
+photo:
+  freeze: true
+  tile_size: 448
+  pixel_unshuffle_factor: 4
+  hidden_dim: 1024
+  output_dim: 2048
+radiograph:
+  adapter:
+    enabled: true
+    in_channels: 3
+    mid_channels: 64
+    kernel_size: 3
+    activation: gelu
+    use_batchnorm: true
+    residual: true
+  reuse_photo_encoder: true
+  hist_normalisation: true
+text:
+  max_length: 512
+  truncation_strategy: last
+  prompt_template: clinical_diagnostic_v1

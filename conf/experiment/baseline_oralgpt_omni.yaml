@@ -1,0 +1,22 @@
+experiment_id: baseline_oralgpt_omni
+description: Independent verification of OralGPT-Omni (Supp. Table S8 row 1).
+seed: 42
+phases: [phase2, phase3]
+external_baseline:
+  name: OralGPT-Omni
+  source: github.com/isbrycee/OralGPT
+  framework: PyTorch 2.1
+  device: A100-80G
+data:
+  primary: code
+phase2:
+  epochs: 10
+  lr: 5.0e-5
+  batch_size_per_gpu: 16
+  grad_accum_steps: 1
+  warmup_steps: 500
+phase3:
+  calibration_split: 0.15
+eval:
+  metrics: [accuracy, macro_f1, auc]
+  expected_tolerance_pp: 0.2

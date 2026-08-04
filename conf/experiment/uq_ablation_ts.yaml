@@ -1,0 +1,26 @@
+experiment_id: uq_ablation_ts
+description: Temperature scaling only.
+seed: 42
+phases: [phase3]
+phase3:
+  calibration_split: 0.15
+data:
+  primary: code
+model:
+  fusion: hgcf
+uq:
+  mc_dropout:
+    enabled: false
+    num_samples: 20
+    dropout_p: 0.1
+  temperature:
+    enabled: true
+  raps:
+    enabled: false
+    alpha: 0.05
+    penalty: 0.01
+  risk_tier:
+    auto_calibrate: true
+eval:
+  metrics: [ece, brier, coverage, set_size]
+  bootstrap_iters: 1000

@@ -1,0 +1,13 @@
+name: caries
+modalities: [photo]
+url: https://zenodo.org/record/8000000
+license: TBD
+num_images: 6313
+purpose: cross_eval
+photo:
+  size: 448
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+batch_size_per_gpu: 16
+num_workers: 2
+pin_memory: true

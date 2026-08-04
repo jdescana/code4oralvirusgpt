@@ -1,0 +1,25 @@
+name: code
+modalities: [photo, radiograph, text]
+huggingface_id: OralVirusGPT/CODe
+huggingface_revision: 1.0.0
+license: CC-BY
+num_classes: 120
+splits:
+  train: 0.7
+  val: 0.1
+  test: 0.2
+stratify_by: patient_id
+photo:
+  size: 448
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+radiograph:
+  size: 448
+  hist_clip: [0.5, 99.5]
+  mean: [0.45]
+  std: [0.225]
+text:
+  fields: [chief_complaint, history, findings, demographics]
+batch_size_per_gpu: 16
+num_workers: 4
+pin_memory: true

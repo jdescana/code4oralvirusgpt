@@ -1,0 +1,14 @@
+name: tufts
+modalities: [radiograph]
+url: https://tdd.ece.tufts.edu/
+license: TBD
+num_images: 1000
+purpose: cross_eval
+radiograph:
+  size: 448
+  hist_clip: [0.5, 99.5]
+  mean: [0.45]
+  std: [0.225]
+batch_size_per_gpu: 16
+num_workers: 2
+pin_memory: true

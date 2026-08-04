@@ -1,0 +1,6 @@
+low_entropy_threshold: null
+high_entropy_threshold: null
+medium_set_size: 2
+target_low_risk_accuracy: 0.95
+target_high_risk_recall: 0.90
+auto_calibrate: true

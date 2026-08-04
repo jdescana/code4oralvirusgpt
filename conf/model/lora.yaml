@@ -1,0 +1,12 @@
+r: 16
+alpha: 32
+dropout: 0.1
+bias: none
+task_type: CAUSAL_LM
+target_modules:
+  - wqkv
+  - wo
+  - w1
+  - w2
+  - w3
+modules_to_save: []
